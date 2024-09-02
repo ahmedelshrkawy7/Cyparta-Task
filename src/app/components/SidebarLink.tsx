@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
 
-const SidebarLink = ({ href, icon }) => {
+const SidebarLink = ({ href = "", icon = "" }) => {
   const pathname = usePathname();
   const [show, setShow] = useState(false);
 
