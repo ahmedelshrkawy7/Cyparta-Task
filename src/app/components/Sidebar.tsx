@@ -40,7 +40,7 @@ const Sidebar = () => {
         <div className=" flex flex-col gap-8 mt-10 w-full">
           {data.map((el) => {
             return (
-              <SidebarLink icon={el.icon} href={el.title} key={el.title} />
+              <SidebarLink icon={el?.icon} href={el.title} key={el.title} />
             );
           })}
         </div>

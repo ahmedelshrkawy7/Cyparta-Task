@@ -5,8 +5,15 @@ import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
-const SidebarLink = ({ href, icon }) => {
+type SidebarLinkProps = {
+  icon?: string | StaticImport;
+  href: string;
+  key: string;
+};
+
+const SidebarLink = ({ href, icon }: SidebarLinkProps) => {
   const pathname = usePathname();
   const [show, setShow] = useState(false);
 
@@ -20,7 +27,7 @@ const SidebarLink = ({ href, icon }) => {
         onClick={() => setShow(!show)}
       >
         <Image
-          src={icon}
+          src={typeof icon === "string" ? icon : ""}
           alt=""
           className="group-hover:text-red-600 text-black w-6 "
         />
