@@ -20,7 +20,7 @@ export default function RootLayout({
     <div className="flex ">
       <Sidebar />
 
-      <div className="flex-1 flex-col p-8">
+      <div className="flex-1 flex-col p-4 sm:p-8">
         <Nav />
         <Breadcrumb />
 

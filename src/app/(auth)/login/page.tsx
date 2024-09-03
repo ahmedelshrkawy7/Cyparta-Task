@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const schema = yup.object().shape({
@@ -31,22 +32,12 @@ const Login = () => {
   const router = useRouter();
 
   const onSubmit = async (data: { email: String; password: String }) => {
-    try {
-      const response = await axios.post(
-        "https://cyparta-backend-gf7qm.ondigitalocean.app/api/login/",
-        data
-      );
-      console.log("🚀 ~ onSubmit ~ response.data:", response);
-      if (response.data) {
-        // Store token in local storage or cookie
-        localStorage.setItem("token", response.data.token);
-        // Redirect to protected route
-        router.push("/dashboard");
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      alert("Invalid credentials, please try again.");
-    }
+    const response = await axios.post(
+      "https://cyparta-backend-gf7qm.ondigitalocean.app/api/login/",
+      data
+    );
+    Cookies.set("authToken", response.data.access);
+    router.push("/dashboard");
   };
 
   // State to toggle password visibility

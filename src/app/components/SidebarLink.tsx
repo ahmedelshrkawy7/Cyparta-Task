@@ -5,29 +5,35 @@ import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import {
+  StaticImageData,
+  StaticImport,
+} from "next/dist/shared/lib/get-img-props";
 
 type SidebarLinkProps = {
-  icon?: string | StaticImport;
+  icon?: StaticImport | string;
   href: string;
   key: string;
+  id: number;
 };
 
-const SidebarLink = ({ href, icon }: SidebarLinkProps) => {
+const SidebarLink = ({ href, icon, id }: SidebarLinkProps) => {
   const pathname = usePathname();
   const [show, setShow] = useState(false);
 
   const isActive = pathname.includes("href");
   return (
-    <div>
+    <div
+      className={`animate_from_left ${id === 0 ? "" : `animation_delay-${id}`}`}
+    >
       <div
-        className={`group flex items-center justify-between gap-8 transition  hover:bg-red-100 w-full p-5 px-14 rounded-e-3xl h-12 border-l-4 border-l-red-500 ${
+        className={`group flex items-center justify-between gap-2 transition  hover:bg-red-100 w-full p-5 px-10 rounded-e-3xl h-12 border-l-4 border-l-transparent hover:border-l-red-500 ${
           isActive ? "bg-red-400 border-l-2 " : ""
         }`}
         onClick={() => setShow(!show)}
       >
         <Image
-          src={typeof icon === "string" ? icon : ""}
+          src={icon}
           alt=""
           className="group-hover:text-red-600 text-black w-6 "
         />
@@ -40,7 +46,11 @@ const SidebarLink = ({ href, icon }: SidebarLinkProps) => {
           {href}
         </Link>
 
-        <IoIosArrowForward className={` text-xl ${show ? "rotate-90" : ""}`} />
+        <IoIosArrowForward
+          className={` text-xl group-hover:text-red-500 ${
+            show ? "rotate-90" : ""
+          }`}
+        />
       </div>
 
       {show && (

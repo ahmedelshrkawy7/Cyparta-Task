@@ -33,14 +33,19 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="p-5 h-screen">
-      <div className="bg-white h-full  w-[300px] border border-gray-200 py-5 rounded-3xl flex flex-col gap-10   items-center">
+    <div className="sm:p-5 h-screen  ">
+      <div className="bg-white h-full   md:w-[300px] w-0 border hidden overflow-hidden border-gray-200 py-5 rounded-3xl sm:flex flex-col gap-10 shadow   items-center">
         <Image src={assets.logo} alt="" className="w-40" />
 
         <div className=" flex flex-col gap-8 mt-10 w-full">
-          {data.map((el) => {
+          {data.map((el, index) => {
             return (
-              <SidebarLink icon={el?.icon} href={el.title} key={el.title} />
+              <SidebarLink
+                icon={el.icon}
+                href={el.title}
+                key={el.title}
+                id={index}
+              />
             );
           })}
         </div>
