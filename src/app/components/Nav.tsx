@@ -22,7 +22,6 @@ const Nav = () => {
           <GoBell className="text-2xl " />
         </div>
         <Image src={assets.user} alt="" className="w-16 h-16" />
-        <FiLogOut className="w-10 h-10 text-gray-500" />
       </div>
     </div>
   );

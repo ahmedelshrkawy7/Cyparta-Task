@@ -33,8 +33,8 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="sm:p-5 h-screen  ">
-      <div className="bg-white h-full   md:w-[300px] w-0 border hidden overflow-hidden border-gray-200 py-5 rounded-3xl sm:flex flex-col gap-10 shadow   items-center">
+    <div className="md:p-5 h-screen overflow-hidden  w-0  md:w-[300px]  ">
+      <div className="bg-white h-full   md:border hidden  border-gray-200 py-5 rounded-3xl sm:flex flex-col gap-10 md:shadow   items-center">
         <Image src={assets.logo} alt="" className="w-40" />
 
         <div className=" flex flex-col gap-8 mt-10 w-full">

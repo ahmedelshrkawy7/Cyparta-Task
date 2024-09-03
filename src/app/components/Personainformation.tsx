@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import React from "react";
 import { date } from "yup";
 
-const Personainformation = async ({userData}) => {
+const Personainformation = async ({ userData }) => {
   const { name, email, first_name, last, last_name, phone, date_joined } =
     userData;
 
@@ -54,14 +54,14 @@ const Personainformation = async ({userData}) => {
     },
   ];
   return (
-    <div className="grid grid-cols-1  sm:grid-cols-2 mt-6 w-4/6 gap-8">
+    <div className="grid grid-cols-1  md:grid-cols-2 mt-6 md:w-4/6 gap-8">
       {data.map((el) => {
         return (
           <div className="flex flex-col gap-2" key={el.title}>
             <label htmlFor="firstname" className="text-gray-400">
               {el.title}
             </label>
-            <div className="outline-none border-b border-gray-300">
+            <div className="outline-none border-b border-gray-200">
               {el.data}
             </div>
           </div>

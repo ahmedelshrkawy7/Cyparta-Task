@@ -17,6 +17,5 @@ export const getData = async () => {
     }
   );
 
-  console.log("🚀 ~ getData ~ response.data:", response.data);
   return response.data;
 };

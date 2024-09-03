@@ -9,7 +9,6 @@ import { assets } from "../assets/assets";
 import Personainformation from "../components/Personainformation";
 import axios from "axios";
 import { cookies } from "next/headers";
-import { json } from "stream/consumers";
 
 const getData = async () => {
   const cookieStore = cookies();

@@ -10,8 +10,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -31,17 +35,23 @@ const Login = () => {
   });
   const router = useRouter();
 
-  const onSubmit = async (data: { email: String; password: String }) => {
-    const response = await axios.post(
-      "https://cyparta-backend-gf7qm.ondigitalocean.app/api/login/",
-      data
-    );
-    Cookies.set("authToken", response.data.access);
-    router.push("/dashboard");
+  const onSubmit = (data: { email: String; password: String }) => {
+    setLoading(true);
+    axios
+      .post("https://cyparta-backend-gf7qm.ondigitalocean.app/api/login/", data)
+      .then((res) => {
+        Cookies.set("authToken", res.data.access);
+        router.push("/dashboard");
+        toast.success("Loggedin successfully");
+      })
+      .catch(() => {
+        toast.error("Email or Password is incorect");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
-  // State to toggle password visibility
-  const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <Image src={logo} alt="My Image" className="w-56 h-24" />
@@ -93,8 +103,11 @@ const Login = () => {
         <div className="flex justify-center ">
           <input
             type="submit"
+            disabled={loading}
             value={"Login"}
-            className="bg-[#262626] text-white rounded-xl p-2 h-[55px] w-3/4 cursor-pointer"
+            className={`bg-[#262626] text-white rounded-xl p-2 h-[55px] w-3/4 cursor-pointer ${
+              loading && "opacity-50"
+            }`}
           />
         </div>
       </form>
