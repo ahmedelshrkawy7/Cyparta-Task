@@ -5,13 +5,14 @@ import { GoBell } from "react-icons/go";
 import { assets } from "../assets/assets";
 import { useRouter } from "next/navigation";
 import { FaBars } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 
 const Nav = () => {
   const router = useRouter();
 
   return (
-    <div className=" flex items-center justify-between  ">
-      <FaBars className=" md:hidden text-4xl  " />
+    <div className=" flex items-center justify-between md:justify-end  ">
+      <FaBars className=" md:hidden text-4xl text-gray-500  " />
 
       <div className="flex justify-end items-center gap-8 mb-3 ">
         <div
@@ -21,6 +22,7 @@ const Nav = () => {
           <GoBell className="text-2xl " />
         </div>
         <Image src={assets.user} alt="" className="w-16 h-16" />
+        <FiLogOut className="w-10 h-10 text-gray-500" />
       </div>
     </div>
   );
