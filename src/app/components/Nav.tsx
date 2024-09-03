@@ -7,12 +7,12 @@ import { useRouter } from "next/navigation";
 import { FaBars } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 
-const Nav = () => {
+const Nav = ({ func }) => {
   const router = useRouter();
 
   return (
     <div className=" flex items-center justify-between md:justify-end  ">
-      <FaBars className=" md:hidden text-4xl text-gray-500  " />
+      <FaBars className=" md:hidden text-4xl text-gray-500  " onClick={func} />
 
       <div className="flex justify-end items-center gap-8 mb-3 ">
         <div
