@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import React from "react";
 import { date } from "yup";
 
-const Personainformation = async ({ userData }) => {
+const Personainformation = ({ userData }) => {
   const { name, email, first_name, last, last_name, phone, date_joined } =
     userData;
 
